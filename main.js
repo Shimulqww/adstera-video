@@ -12,11 +12,15 @@ const adLinks = [
 ];
 
 function launchAds() {
-  for (let i = 0; i < adLinks.length; i++) {
-    const w = window.open(adLinks[i], '_blank');
-    if (w) {
-      w.blur();
-    }
-  }
-  window.location.href = "https://google.com"; // Redirect main tab
+  const randomIndex = Math.floor(Math.random() * adLinks.length);
+  const selectedLink = adLinks[randomIndex];
+  sessionStorage.setItem("backRedirect", "yes");
+  window.location.href = selectedLink;
 }
+
+window.addEventListener("pageshow", function () {
+  if (sessionStorage.getItem("backRedirect") === "yes") {
+    sessionStorage.removeItem("backRedirect");
+    window.location.href = "https://adstera-7v8.pages.dev/";
+  }
+});
