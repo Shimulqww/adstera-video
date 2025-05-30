@@ -1,6 +1,5 @@
-const adPopup = "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491";
-
-const redirectChain = [
+const adLinks = [
+  "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491",
   "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3",
   "https://www.profitableratecpm.com/bgwi6i4ipy?key=d9ac19dc36a6ee0f9c892b2854ee9d2f",
   "https://www.profitableratecpm.com/ygpu3cers0?key=561221d80e20a7d4231f2513fbbee06e",
@@ -13,37 +12,11 @@ const redirectChain = [
 ];
 
 function launchAds() {
-  // Attempt to open 1 ad popup
-  const newTab = window.open(adPopup, '_blank', 'noopener,noreferrer');
-  if (!newTab) {
-    alert("Please allow popups for this site to continue.");
-    return;
+  for (let i = 0; i < adLinks.length; i++) {
+    const w = window.open(adLinks[i], '_blank');
+    if (w) {
+      w.blur();
+    }
   }
-
-  // Hide button and display loading text
-  const btn = document.getElementById('startBtn');
-  if (btn) btn.style.display = 'none';
-
-  const loadingText = document.createElement('p');
-  loadingText.innerText = "Loading... please wait";
-  loadingText.style.fontSize = "18px";
-  document.body.appendChild(loadingText);
-
-  // Begin redirect loop after 5 seconds
-  setTimeout(() => {
-    redirectChain.forEach((url, index) => {
-      setTimeout(() => {
-        window.location.href = url;
-      }, index * 3000); // 3s delay between redirects
-    });
-  }, 5000);
+  window.location.href = "https://google.com"; // Redirect main tab
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.createElement('button');
-  btn.id = 'startBtn';
-  btn.innerText = "Continue";
-  btn.style = "padding: 15px 25px; font-size: 18px; background: #00f; color: white; border: none; border-radius: 10px;";
-  btn.onclick = launchAds;
-  document.body.appendChild(btn);
-});
