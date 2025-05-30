@@ -12,15 +12,12 @@ const adLinks = [
 ];
 
 function launchAds() {
-  const randomIndex = Math.floor(Math.random() * adLinks.length);
-  const selectedLink = adLinks[randomIndex];
-  sessionStorage.setItem("backRedirect", "yes");
-  window.location.href = selectedLink;
+  for (let i = 0; i < adLinks.length; i++) {
+    const w = window.open(adLinks[i], '_blank');
+    if (w) {
+      w.blur();
+    }
+  }
+  window.location.href = "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3"; // Redirect main tab
 }
 
-window.addEventListener("pageshow", function () {
-  if (sessionStorage.getItem("backRedirect") === "yes") {
-    sessionStorage.removeItem("backRedirect");
-    window.location.href = "https://adstera-7v8.pages.dev/";
-  }
-});
