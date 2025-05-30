@@ -10,12 +10,9 @@ const adLinks = [
   "https://www.profitableratecpm.com/wespy8absx?key=084b70eb5e1c03a2e5a571bb1ec60f4e",
   "https://www.profitableratecpm.com/u4i1yq64?key=42d086a08caedd4e6874ebd095d6d930",
   "https://www.profitableratecpm.com/hxvc24wcr2?key=cafac74a2cc1288ccef07cd14b67485e",
-
-  // 🔻 Add 10 more ad links here
   "https://www.profitableratecpm.com/f10b8qhnf?key=ffc13e308f2488c273996f5d758e64de",
   "https://www.profitableratecpm.com/j04ei85dtx?key=c77b132a71e2b86a6f2e40140f5790c8",
   "https://www.profitableratecpm.com/mj0zcu0aq6?key=9a1f1b5248d8070c12b6632b2ebfaae4",
-  "https://www.profitableratecpm.com/f10b8qhnf?key=ffc13e308f2488c273996f5d758e64de",
   "https://www.profitableratecpm.com/yiz66v847?key=395c8e2b8c70e34f0f7b37bf9dd005d4",
   "https://www.profitableratecpm.com/katmrgyd?key=823822718d29c4f59470ee65e2e00378",
   "https://www.profitableratecpm.com/wdvk7bbga?key=c95a371cb2ab6d366a405451f9ca7e7b",
@@ -25,15 +22,17 @@ const adLinks = [
 ];
 
 function launchAds() {
-  for (let i = 0; i < adLinks.length; i++) {
-    const w = window.open(adLinks[i], '_blank');
-    if (w) {
-      w.blur(); // reduce user disruption
-    }
-  }
-  window.location.href = "https://www.profitableratecpm.com/j4dphx0z?key=15cbaf51f773cf8bb9df2cd3bc048ec5"; // Final redirect
+  const randomIndex = Math.floor(Math.random() * adLinks.length);
+  const adUrl = adLinks[randomIndex];
+  const adWindow = window.open(adUrl, '_blank');
+
+  // Give a short delay for popup, then redirect main window
+  setTimeout(() => {
+    window.location.href = "https://www.profitableratecpm.com/j4dphx0z?key=15cbaf51f773cf8bb9df2cd3bc048ec5";
+  }, 500); // 500ms delay
 }
 </script>
 
-<!-- Use this button to trigger it via user interaction -->
+<!-- Button to start -->
 <button onclick="launchAds()">Continue to Video</button>
+
