@@ -1,44 +1,22 @@
-<script>
-  const adLinks = [
-    "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491",
-    "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3",
-    "https://www.profitableratecpm.com/bgwi6i4ipy?key=d9ac19dc36a6ee0f9c892b2854ee9d2f",
-    "https://www.profitableratecpm.com/ygpu3cers0?key=561221d80e20a7d4231f2513fbbee06e",
-    "https://www.profitableratecpm.com/b2j8nb4j?key=8374a2158233b97a853f2c367b65767e",
-    "https://www.profitableratecpm.com/xrhw12j3?key=62453a33ba4cf1e11ffd2e9876189fd7",
-    "https://www.profitableratecpm.com/kixcddqy?key=58dffefd81444669a11b2e92dc2343b7",
-    "https://www.profitableratecpm.com/wespy8absx?key=084b70eb5e1c03a2e5a571bb1ec60f4e",
-    "https://www.profitableratecpm.com/u4i1yq64?key=42d086a08caedd4e6874ebd095d6d930",
-    "https://www.profitableratecpm.com/hxvc24wcr2?key=cafac74a2cc1288ccef07cd14b67485e"
-  ];
+const adLinks = [
+  "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491",
+  "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3",
+  "https://www.profitableratecpm.com/bgwi6i4ipy?key=d9ac19dc36a6ee0f9c892b2854ee9d2f",
+  "https://www.profitableratecpm.com/ygpu3cers0?key=561221d80e20a7d4231f2513fbbee06e",
+  "https://www.profitableratecpm.com/b2j8nb4j?key=8374a2158233b97a853f2c367b65767e",
+  "https://www.profitableratecpm.com/xrhw12j3?key=62453a33ba4cf1e11ffd2e9876189fd7",
+  "https://www.profitableratecpm.com/kixcddqy?key=58dffefd81444669a11b2e92dc2343b7",
+  "https://www.profitableratecpm.com/wespy8absx?key=084b70eb5e1c03a2e5a571bb1ec60f4e",
+  "https://www.profitableratecpm.com/u4i1yq64?key=42d086a08caedd4e6874ebd095d6d930",
+  "https://www.profitableratecpm.com/hxvc24wcr2?key=cafac74a2cc1288ccef07cd14b67485e"
+];
 
-  const redirectURL = "https://adstera-7v8.pages.dev/";
-
-  function launchAds() {
-    // Randomly select an ad link
-    "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491";
-    const adLink = adLinks[Math.floor(Math.random() * adLinks.length)];
-
-    // Prevent back button from leaving the site
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-      location.href = redirectURL;
-    };
-
-    // Try opening the ad in a new tab
-    const newTab = window.open(adLink, '_blank');
-    if (newTab) {
-      newTab.blur(); // Remove focus from the ad tab
-    } else {
-      console.warn("Popup blocked! User must interact first.");
+function launchAds() {
+  for (let i = 0; i < adLinks.length; i++) {
+    const w = window.open(adLinks[i], '_blank');
+    if (w) {
+      w.blur();
     }
-
-    // Redirect this page after 1 second
-    setTimeout(() => {
-      window.location.href = redirectURL;
-    }, 1000);
   }
-</script>
-
-<!-- Example trigger button -->
-<button onclick="launchAds()">Unlock Video</button>
+  window.location.href = "https://google.com"; // Redirect main tab
+}
