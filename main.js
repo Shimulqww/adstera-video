@@ -1,3 +1,4 @@
+<script>
 const adLinks = [
   "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491",
   "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3",
@@ -11,7 +12,7 @@ const adLinks = [
   "https://www.profitableratecpm.com/hxvc24wcr2?key=cafac74a2cc1288ccef07cd14b67485e"
 ];
 
-// 9 redirect links for the main tab (sequential redirects)
+// Sequential redirects in main tab (high CTR method)
 const redirectChain = [
   "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3",
   "https://www.profitableratecpm.com/bgwi6i4ipy?key=d9ac19dc36a6ee0f9c892b2854ee9d2f",
@@ -25,17 +26,32 @@ const redirectChain = [
 ];
 
 function launchAds() {
-  // Open all ad links in new tabs
+  // Popunder strategy - opens multiple ads on click (better CPM on real user interaction)
   adLinks.forEach(link => {
-    const w = window.open(link, '_blank');
+    const w = window.open(link, '_blank', 'noopener,noreferrer');
     if (w) w.blur();
   });
 
-  // Sequential redirects on the main tab
-  redirectChain.forEach((url, index) => {
-    setTimeout(() => {
-      window.location.href = url;
-    }, index * 1500); // 1.5 seconds between each redirect
-  });
+  // Main tab redirect loop after 3 seconds
+  setTimeout(() => {
+    redirectChain.forEach((url, index) => {
+      setTimeout(() => {
+        window.location.href = url;
+      }, index * 3000); // 3s between each to simulate deeper engagement
+    });
+  }, 3000); // Initial delay
 }
 
+// Trigger on button click to bypass popup blockers
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.createElement('button');
+  btn.innerText = "Continue";
+  btn.style = "padding: 15px 25px; font-size: 18px; background: #00f; color: white; border: none; border-radius: 10px;";
+  btn.onclick = () => {
+    btn.style.display = "none";
+    launchAds();
+    document.body.innerHTML += "<p style='font-size:18px;'>Loading content... please wait.</p>";
+  };
+  document.body.appendChild(btn);
+});
+</script>
