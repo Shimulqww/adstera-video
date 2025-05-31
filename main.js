@@ -1,3 +1,4 @@
+
 const adLinks = [
   "https://www.profitableratecpm.com/kf3qprjcu?key=f4646d0b196b3e6ba057b2f620d35491",
   "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3",
@@ -11,13 +12,21 @@ const adLinks = [
   "https://www.profitableratecpm.com/hxvc24wcr2?key=cafac74a2cc1288ccef07cd14b67485e"
 ];
 
-function launchAds() {
-  for (let i = 0; i < adLinks.length; i++) {
-    const w = window.open(adLinks[i], '_blank');
-    if (w) {
-      w.blur();
-    }
-  }
-  window.location.href = "https://www.profitableratecpm.com/khfhbjjr?key=8f6a2c9025532f3798bca037c9f902d3"; // Redirect main tab
-}
+const redirectLinks = [
+  "https://www.profitableratecpm.com/f9m79cm6?key=79a149ef6aab089aec946c6e85ca1c0a",
+  "https://www.profitableratecpm.com/rxvsyw1625?key=ab0125f4a626e7f1b062882968c352ee"
+];
 
+function launchAds() {
+  // Open a random ad link from the adLinks array
+  const randomAdIndex = Math.floor(Math.random() * adLinks.length);
+  const randomAdLink = adLinks[randomAdIndex];
+  const w = window.open(randomAdLink, '_blank');
+  if (w) {
+    w.blur();
+  }
+
+  // Redirect to one of the new links
+  const randomRedirectIndex = Math.floor(Math.random() * redirectLinks.length);
+  window.location.href = redirectLinks[randomRedirectIndex];
+}
