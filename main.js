@@ -24,7 +24,7 @@ const geoAds = {
 
 const redirectLinks = [
   "https://www.profitableratecpm.com/rxvsyw1625?key=ab0125f4a626e7f1b062882968c352ee",
-  "https://www.profitableratecpm.com/f9m79cm6?key=79a149ef6aab089aec946c6e85ca1c0a"
+  "https://www.profitableratecpm.com/f9m79cm6?key=79a149ef6aab089aec946c6e85ca1c0a",
 ];
 
 function geoLaunch() {
