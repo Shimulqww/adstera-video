@@ -24,31 +24,33 @@ const geoAds = {
 
 const redirectLinks = [
   "https://www.profitableratecpm.com/rxvsyw1625?key=ab0125f4a626e7f1b062882968c352ee",
-  "https://www.profitableratecpm.com/f9m79cm6?key=79a149ef6aab089aec946c6e85ca1c0a",
+  "https://www.profitableratecpm.com/f9m79cm6?key=79a149ef6aab089aec946c6e85ca1c0a"
 ];
 
 function geoLaunch() {
   fetch('https://ip-api.com/json/?fields=countryCode')
     .then(res => res.json())
     .then(data => {
-      const country = data.countryCode;
+      const country = data.countryCode || "default";
       const ads = geoAds[country] || geoAds.default;
 
       const adLink = ads[Math.floor(Math.random() * ads.length)];
+      const redirect = redirectLinks[Math.floor(Math.random() * redirectLinks.length)];
+
+      // Open ad in background (if allowed)
       const popup = window.open(adLink, '_blank');
       if (popup) popup.blur();
 
-      const redirect = redirectLinks[Math.floor(Math.random() * redirectLinks.length)];
+      // Redirect current tab
       window.location.href = redirect;
     })
     .catch(() => {
-      const adLink = geoAds.default[0];
-      window.open(adLink, '_blank');
+      window.open(geoAds.default[0], '_blank');
       window.location.href = redirectLinks[0];
     });
 }
 
-// Bind to user interaction
+// Bind one-time interaction
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", geoLaunch, { once: true });
 });
